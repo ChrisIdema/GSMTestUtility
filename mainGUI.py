@@ -237,7 +237,7 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
                 GSM_port.close()
                 portOpen = False
                 self.connectButton.setText("Connect")
-                Console_Data = 'Port Closed'
+                Console_Data = 'Port Closed\n'
                 self.SerialConsole.setPlainText('Port Closed')
                 self.findButton.setEnabled(True)
                 self.portComboBox.setEnabled(True)
@@ -246,7 +246,7 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
                 GSM_port.open()
                 portOpen = True
                 self.connectButton.setText("Disconnect")
-                Console_Data = 'Port Opened'
+                Console_Data = 'Port Opened\n'
                 self.write('AT' + "\r\n")
                 self.findButton.setEnabled(False)
                 self.portComboBox.setEnabled(False)
