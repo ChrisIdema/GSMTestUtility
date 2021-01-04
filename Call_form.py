@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,12 +16,12 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -61,15 +61,15 @@ class Ui_Dialog(object):
 "\n"
 "QLabel {border:4px outset; border-radius: 0px; border-color: blue; color:white;  background-color: darkblue; padding:5px;font: 75 12pt \"MS Shell Dlg 2\";}\n"
 "QPlainTextEdit {border:4px outset; border-radius: 0px; border-color: blue; color:black;  background-color: rgb(235, 235, 235);; padding:5px;font: 75 12pt \"MS Shell Dlg 2\";}"))
-        self.gridLayout_2 = QtGui.QGridLayout(Dialog)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.frame = QtGui.QFrame(Dialog)
-        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName(_fromUtf8("frame"))
-        self.pushButton = QtGui.QPushButton(self.frame)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
         self.pushButton.setGeometry(QtCore.QRect(0, 0, 131, 41))
         self.pushButton.setStyleSheet(_fromUtf8("background-color: rgb(0, 85, 0);"))
         icon1 = QtGui.QIcon()
@@ -77,7 +77,7 @@ class Ui_Dialog(object):
         self.pushButton.setIcon(icon1)
         self.pushButton.setIconSize(QtCore.QSize(32, 32))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
-        self.pushButton_2 = QtGui.QPushButton(self.frame)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
         self.pushButton_2.setGeometry(QtCore.QRect(180, 0, 131, 41))
         self.pushButton_2.setStyleSheet(_fromUtf8("background-color: rgb(170, 0, 0);"))
         icon2 = QtGui.QIcon()
@@ -87,18 +87,18 @@ class Ui_Dialog(object):
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
         self.verticalLayout.addWidget(self.frame)
         self.gridLayout_2.addLayout(self.verticalLayout, 1, 0, 1, 1)
-        self.verticalLayout_2 = QtGui.QVBoxLayout()
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
-        self.frame_2 = QtGui.QFrame(Dialog)
-        self.frame_2.setFrameShape(QtGui.QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame_2 = QtWidgets.QFrame(Dialog)
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName(_fromUtf8("frame_2"))
-        self.label = QtGui.QLabel(self.frame_2)
+        self.label = QtWidgets.QLabel(self.frame_2)
         self.label.setGeometry(QtCore.QRect(0, 10, 71, 41))
         self.label.setStyleSheet(_fromUtf8("background-color: rgba(255, 255, 255, 0);\n"
 "border-color: rgba(255, 255, 255, 0);"))
         self.label.setObjectName(_fromUtf8("label"))
-        self.numberLineedit = QtGui.QLineEdit(self.frame_2)
+        self.numberLineedit = QtWidgets.QLineEdit(self.frame_2)
         self.numberLineedit.setGeometry(QtCore.QRect(60, 9, 241, 51))
         self.numberLineedit.setObjectName(_fromUtf8("numberLineedit"))
         self.verticalLayout_2.addWidget(self.frame_2)
