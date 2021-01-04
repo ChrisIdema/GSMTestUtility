@@ -43,6 +43,7 @@ ftp_put_data=''
 count3=''
 count4=''
 
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -100,31 +101,46 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
         
         # QtCore.QObject.connect(self.connectButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.connect_disconnect)
         self.connectButton.clicked.connect(self.connect_disconnect)
-        
+                
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.serial_data)
+        self.Thread1.signal_serial_data.connect(self.serial_data)
+        
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.Delete_Dialog)
+        self.Thread1.signal_serial_data.connect(self.Delete_Dialog)
+        
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("INCOMING_CALL")), self.showno)
+        self.Thread1.signal_incoming_call.connect(self.showno)
+        
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.print_http_get)
+        self.Thread1.signal_serial_data.connect(self.print_http_get)
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.on_off)
+        self.Thread1.signal_serial_data.connect(self.on_off)
         
         # QtCore.QObject.connect(self.SendButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.send_script)
         self.SendButton.clicked.connect(self.send_script)
         
         # QtCore.QObject.connect(self.ScriptLineEdit, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.ScriptText)
+        self.ScriptLineEdit.textChanged.connect(self.ScriptText)
         
         # QtCore.QObject.connect(self.Call_Button, QtCore.SIGNAL(_fromUtf8("clicked()")), self.CallText)
         self.Call_Button.clicked.connect(self.CallText)
         
         # QtCore.QObject.connect(self.NumberlineEdit, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.callno)
+        self.NumberlineEdit.textChanged.connect(self.callno)
         
         # QtCore.QObject.connect(self.Halt_Button, QtCore.SIGNAL(_fromUtf8("clicked()")), self.end_call)
         self.Halt_Button.clicked.connect(self.end_call)
         
         # QtCore.QObject.connect(self.lineEdit_3, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.smsno)
+        self.lineEdit_3.textChanged.connect(self.smsno)
         # QtCore.QObject.connect(self.plainTextEdit, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.smsbody)
+        self.plainTextEdit.textChanged.connect(self.smsbody)
         # QtCore.QObject.connect(self.plainTextEdit_7, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.smsbody_second)
+        self.plainTextEdit_7.textChanged.connect(self.smsbody_second)
         # QtCore.QObject.connect(self.plainTextEdit_3, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.http_smsbody_second)
+        self.plainTextEdit_3.textChanged.connect(self.http_smsbody_second)
         # QtCore.QObject.connect(self.plainTextEdit_4, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.ftp_smsbody_third)
+        self.plainTextEdit_4.textChanged.connect(self.ftp_smsbody_third)
 
 
         # QtCore.QObject.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.sendfunc)
@@ -134,6 +150,7 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
         # QtCore.QObject.connect(self.lineEdit_4, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.get_ip)
         # QtCore.QObject.connect(self.lineEdit_5, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.get_port)
         # QtCore.QObject.connect(self.plainTextEdit_7, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.send_data)
+        self.plainTextEdit_7.textChanged.connect(self.send_data)
         
         # QtCore.QObject.connect(self.pushButton_8, QtCore.SIGNAL(_fromUtf8("clicked()")), self.connect_gprs)
         self.pushButton_8.clicked.connect(self.connect_gprs)
@@ -856,7 +873,10 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
             self.pushButton_5.setEnabled(True)
 
 class WorkThread(QtCore.QThread):
-    def __init__(self):
+    signal_serial_data = QtCore.pyqtSignal(str)
+    signal_incoming_call = QtCore.pyqtSignal(str)       
+        
+    def __init__(self):       
         QtCore.QThread.__init__(self)
 
     def __del__(self):
@@ -870,7 +890,7 @@ class WorkThread(QtCore.QThread):
         while True:
             while portOpen:
                 global c
-                d = GSM_port.read()
+                d = GSM_port.read().decode('utf-8')
                 global Console_Data
                 Console_Data += d
                 read_data+=d
@@ -879,8 +899,8 @@ class WorkThread(QtCore.QThread):
                         c = Console_Data.rfind('+CLIP:')
 
                         c += 8
-                    self.add_post.emit("INCOMING_CALL")
-                self.add_post.emit("SERIAL_DATA")
+                    self.signal_incoming_call.emit("INCOMING_CALL")
+                self.signal_serial_data.emit("SERIAL_DATA")
 
 
 if __name__ == '__main__':
