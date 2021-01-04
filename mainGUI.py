@@ -70,7 +70,9 @@ class DialogClass(QtWidgets.QDialog, Call_form.Ui_Dialog):
         super(DialogClass, self).__init__(parent)
         self.setupUi(self)
         # QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Attend_Call)
+        self.pushButton.clicked.connect(self.Attend_Call)
         # QtCore.QObject.connect(self.pushButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.Decline)
+        self.pushButton_2.clicked.connect(self.Decline)
     def Attend_Call(self):
         GSM_port.write('ATA' + "\r\n")
 
@@ -88,21 +90,36 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
         self.setupUi(self)
         self.Thread1 = WorkThread()
         # QtCore.QObject.connect(self.findButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.port_update)
-        # QtCore.QObject.get_thread.add_post.connect(self.findButton,self.port_update)
+        self.findButton.clicked.connect(self.port_update)
 
         # QtCore.QObject.connect(self.portComboBox, QtCore.SIGNAL(_fromUtf8("activated(QString)")), self.port_select)
-        # QtCore.QObject.connect(self.baudcomboBox, QtCore.SIGNAL(_fromUtf8("activated(QString)")), self.baud_select)
+        self.portComboBox.activated.connect(self.port_select)
+        
+        # QtCore.QObject.connect(self.baudComboBox, QtCore.SIGNAL(_fromUtf8("activated(QString)")), self.baud_select)
+        self.baudComboBox.activated.connect(self.baud_select)
+        
         # QtCore.QObject.connect(self.connectButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.connect_disconnect)
+        self.connectButton.clicked.connect(self.connect_disconnect)
+        
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.serial_data)
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.Delete_Dialog)
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("INCOMING_CALL")), self.showno)
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.print_http_get)
         # QtCore.QObject.connect(self.Thread1, QtCore.SIGNAL(_fromUtf8("SERIAL_DATA")), self.on_off)
+        
         # QtCore.QObject.connect(self.SendButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.send_script)
+        self.SendButton.clicked.connect(self.send_script)
+        
         # QtCore.QObject.connect(self.ScriptLineEdit, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.ScriptText)
+        
         # QtCore.QObject.connect(self.Call_Button, QtCore.SIGNAL(_fromUtf8("clicked()")), self.CallText)
+        self.Call_Button.clicked.connect(self.CallText)
+        
         # QtCore.QObject.connect(self.NumberlineEdit, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.callno)
+        
         # QtCore.QObject.connect(self.Halt_Button, QtCore.SIGNAL(_fromUtf8("clicked()")), self.end_call)
+        self.Halt_Button.clicked.connect(self.end_call)
+        
         # QtCore.QObject.connect(self.lineEdit_3, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.smsno)
         # QtCore.QObject.connect(self.plainTextEdit, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.smsbody)
         # QtCore.QObject.connect(self.plainTextEdit_7, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.smsbody_second)
@@ -111,22 +128,37 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
 
 
         # QtCore.QObject.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.sendfunc)
+        self.pushButton_4.clicked.connect(self.sendfunc)
+        
         # QtCore.QObject.connect(self.lineEdit_2, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.get_apn)
         # QtCore.QObject.connect(self.lineEdit_4, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.get_ip)
         # QtCore.QObject.connect(self.lineEdit_5, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.get_port)
         # QtCore.QObject.connect(self.plainTextEdit_7, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.send_data)
+        
         # QtCore.QObject.connect(self.pushButton_8, QtCore.SIGNAL(_fromUtf8("clicked()")), self.connect_gprs)
+        self.pushButton_8.clicked.connect(self.connect_gprs)
         # QtCore.QObject.connect(self.pushButton_7, QtCore.SIGNAL(_fromUtf8("clicked()")), self.disconnect_gprs)
+        self.pushButton_7.clicked.connect(self.disconnect_gprs)
         # QtCore.QObject.connect(self.pushButton_25, QtCore.SIGNAL(_fromUtf8("clicked()")), self.send_button)
+        self.pushButton_25.clicked.connect(self.send_button)
         # QtCore.QObject.connect(self.pushButton_6, QtCore.SIGNAL(_fromUtf8("clicked()")), self.clear_log)
+        self.pushButton_6.clicked.connect(self.clear_log)
+        
         # QtCore.QObject.connect(self.plainTextEdit_2, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.source_add)
         # QtCore.QObject.connect(self.plainTextEdit_3, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.get_data)
         # QtCore.QObject.connect(self.plainTextEdit_4, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.FTP_data)
         # QtCore.QObject.connect(self.plainTextEdit_7, QtCore.SIGNAL(_fromUtf8("textChanged()")), self.tcp_udp_data)
+        
         # QtCore.QObject.connect(self.pushButton_3, QtCore.SIGNAL(_fromUtf8("clicked()")), self.get_fun)
+        self.pushButton_3.clicked.connect(self.get_fun)
         # QtCore.QObject.connect(self.pushButton_5, QtCore.SIGNAL(_fromUtf8("clicked()")), self.post_fun)
+        self.pushButton_5.clicked.connect(self.post_fun)
+        
         # QtCore.QObject.connect(self.lineEdit_16, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.http_apn)
+        
         # QtCore.QObject.connect(self.pushButton_26, QtCore.SIGNAL(_fromUtf8("clicked()")), self.session_close)
+        self.pushButton_26.clicked.connect(self.session_close)
+        
         # QtCore.QObject.connect(self.comboBox, QtCore.SIGNAL(_fromUtf8("activated(QString)")), self.tcp_udp)
         # QtCore.QObject.connect(self.lineEdit_6, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.ftp_server)
         # QtCore.QObject.connect(self.lineEdit_7, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.username)
@@ -134,10 +166,15 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
         # QtCore.QObject.connect(self.lineEdit_9, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.file_name)
         # QtCore.QObject.connect(self.lineEdit_10, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.directry)
         # QtCore.QObject.connect(self.lineEdit_11, QtCore.SIGNAL(_fromUtf8("textChanged(QString)")), self.ftp_apn)
+        
         # QtCore.QObject.connect(self.pushButton_9, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ftp_push)
+        self.pushButton_9.clicked.connect(self.ftp_push)
         # QtCore.QObject.connect(self.pushButton_10, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ftp_get)
+        self.pushButton_10.clicked.connect(self.ftp_get)
         # QtCore.QObject.connect(self.pushButton_11, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ftp_connect)
+        self.pushButton_11.clicked.connect(self.ftp_connect)
         # QtCore.QObject.connect(self.pushButton_12, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ftp_disconnect)
+        self.pushButton_12.clicked.connect(self.ftp_disconnect)
 
     def port_update(self):
         try:
@@ -157,16 +194,16 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
 
     def port_select(self, local_var):
         global com_port_selection
-        GSM_port.close
+        GSM_port.close()
         global portOpen
         portOpen = False
-        com_port_selection = local_var
+        com_port_selection =   self.portComboBox.itemText(local_var)        
 
     def baud_select(self, baud):
-        GSM_port.close
+        GSM_port.close()
         global portOpen
         portOpen = False
-        GSM_port.baudrate = baud
+        GSM_port.baudrate = int(self.baudComboBox.itemText(baud))       
 
     def connect_disconnect(self):
           global Console_Data
@@ -196,7 +233,7 @@ class MainGUIClass(QtWidgets.QMainWindow, GSMUtility.Ui_MainWindow):
 
 
           except:
-             self.SerialConsole.setPlainText('Port May be Used By Another Application')
+             self.SerialConsole.setPlainText('Port May be Used By Another Application ' + str(com_port_selection) + ' ' + str(GSM_port.baudrate))
 
     def serial_data(self):
         global Console_Data
