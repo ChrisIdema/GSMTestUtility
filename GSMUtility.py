@@ -122,7 +122,7 @@ class Ui_MainWindow(object):
 "QPushButton#connectButton:pressed{background-color: lightblue;}\n"
 "QPushButton#connectButton:disabled{background-color: rgb(176, 176, 176);}\n"
 "\n"
-"QComboBox{border-style:solid;background-color:darkblue;color:white;border-radius:3px;font: 12pt \"MS Shell Dlg 2\"; padding: 10px}\n"
+"QComboBox{border-style:solid;background-color:lightblue;color:black;border-radius:3px;font: 12pt \"MS Shell Dlg 2\"; padding: 10px}\n"
 "QComboBox:hover{color:#ccc;    background-color: qlineargradient(spread:pad, x1:0.517, y1:0, x2:0.517, y2:1, stop:0 rgba(45, 45, 45, 255), stop:0.505682 rgba(45, 45, 45, 255), stop:1 rgba(29, 29, 29, 255));    border-color:#2d89ef;border-width:2px;}\n"
 "QComboBox:pressed{background-color: lightblue;}\n"
 "\n"
